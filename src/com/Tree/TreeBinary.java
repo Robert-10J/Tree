@@ -57,8 +57,12 @@ public class TreeBinary {
     }
 
     //Recorrer en PreOrden
-    public void preOrden(){
-        
+    public void preOrden(NodoTree ra) {
+        if (ra != null) {
+            JOptionPane.showMessageDialog(null, ra.dato);
+            preOrden(ra.childIzq);
+            preOrden(ra.childDerech);
+        }
     }
 
     //Elimiar nodo
