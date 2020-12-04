@@ -23,9 +23,9 @@ public class Main {
                 switch (opcion){
                     case 1:
                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
-                                   "Ingrese numero del nodo: "));
+                                   "Ingrese dato al nodo: "));
                            nombre = JOptionPane.showInputDialog(null,
-                                   "Ingresa nombre del nodo: ");
+                                   "Ingresa nombre al nodo: ");
                            tree.agregarNodo(elemento, nombre);
                         break;
                     case 2:
@@ -65,10 +65,10 @@ public class Main {
                            }
                         break;
                     case 6:
-                            if (){
-
+                            if (!tree.vacio()){
+                                tree.preOrden(tree.raiz);
                             } else {
-                                
+                                JOptionPane.showMessageDialog(null,"El arbol esta vacio");
                             }
                         break;
                     case 7:
