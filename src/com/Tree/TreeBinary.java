@@ -65,6 +65,21 @@ public class TreeBinary {
         }
     }
 
+    //Imprimir subTree left
+    public void subTreeLeft(NodoTree childLeft){
+        if (childLeft != null) {
+            subTreeLeft(childLeft.childIzq);
+            subTreeLeft(childLeft.childDerech);
+            //System.out.println(childLeft);
+            JOptionPane.showMessageDialog(null, childLeft);
+        }
+    }
+
+    //Print subTree right
+    public void subTreeRight(NodoTree childRight) {
+
+    }
+
     //Elimiar nodo
     public boolean elimminar(int da) {
         NodoTree aux = raiz;

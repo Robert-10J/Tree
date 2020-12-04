@@ -15,10 +15,10 @@ public class Main {
                                 "1.- Insertar raíz/nodo \n" +
                                 "2.- Eliminar nodo \n" +
                                 "3.- Consultar sub arbol derecho \n" +
-                                "4.- Consultar sub arbol izquiero \n" +
+                                "4.- Consultar sub arbol izquierdo \n" +
                                 "5.- Recorrido InOrden \n" +
                                 "6.- Recorrido PreOrden \n" +
-                                "7.- Recorrido PostOrden" +
+                                "7.- Recorrido PostOrden \n" +
                                 "8.- Salir" + "\n\n"));
                 switch (opcion){
                     case 1:
@@ -45,6 +45,11 @@ public class Main {
                     case 3:
                         break; //8 3 10 14 13 1 6 4 7
                     case 4:
+                        if (!tree.vacio()) {
+                            tree.subTreeLeft(tree.raiz.childIzq);
+                        } else {
+                            JOptionPane.showMessageDialog(null,"El arbol esta vacio");
+                        }
                         break;
                     case 5:
                            if (!tree.vacio()) {
