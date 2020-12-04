@@ -77,7 +77,12 @@ public class TreeBinary {
 
     //Print subTree right
     public void subTreeRight(NodoTree childRight) {
-
+        if (childRight != null) {
+            subTreeRight(childRight.childDerech);
+            subTreeRight(childRight.childIzq);
+            //JOptionPane.showMessageDialog(null, childRight);
+            System.out.println(childRight);
+        }
     }
 
     //Elimiar nodo

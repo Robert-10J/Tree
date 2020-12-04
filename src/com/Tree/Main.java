@@ -43,6 +43,11 @@ public class Main {
                         }
                         break;
                     case 3:
+                        if (!tree.vacio()) {
+                            tree.subTreeRight(tree.raiz.childDerech);
+                        } else {
+                            JOptionPane.showMessageDialog(null,"El arbol esta vacio");
+                        }
                         break; //8 3 10 14 13 1 6 4 7
                     case 4:
                         if (!tree.vacio()) {
@@ -60,7 +65,11 @@ public class Main {
                            }
                         break;
                     case 6:
+                            if (){
 
+                            } else {
+                                
+                            }
                         break;
                     case 7:
                           if (!tree.vacio()) {
