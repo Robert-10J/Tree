@@ -60,8 +60,7 @@ public class Main {
                            if (!tree.vacio()) {
                                tree.inOrden(tree.raiz);
                            } else {
-                               JOptionPane.showMessageDialog(null,
-                                       "El arbol esta vacio");
+                               JOptionPane.showMessageDialog(null, "El arbol esta vacio");
                            }
                         break;
                     case 6:
@@ -75,8 +74,7 @@ public class Main {
                           if (!tree.vacio()) {
                               tree.postOrden(tree.raiz);
                           } else {
-                              JOptionPane.showMessageDialog(null,
-                                      "El arbol esta vacio");
+                              JOptionPane.showMessageDialog(null, "El arbol esta vacio");
                           }
                         break;
                     case 8: opcion = 8; break;
