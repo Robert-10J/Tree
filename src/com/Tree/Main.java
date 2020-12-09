@@ -30,20 +30,22 @@ public class Main {
                         break;
                     case 2:
                         if (!tree.vacio()) {
-                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
-                                    "Ingrese numero del nodo a eliminar: "));
-                            if (tree.elimminar(elemento) == false) {
-                                JOptionPane.showMessageDialog(null, "Nodo no encontrado");
+                            int eleDele = Integer.parseInt(JOptionPane.showInputDialog(null,
+                                    "Ingrese elemento a eliminar"));
+                            if (tree.eliminar(eleDele) == false) {
+                                /*JOptionPane.showMessageDialog(null,
+                                        "El elemento no se encuentra en el arbol");*/
                             } else {
-                                JOptionPane.showMessageDialog(null,"Nodo eliminado");
+                                /*JOptionPane.showMessageDialog(null,
+                                        "Se a eliminado el elemento");*/
                             }
                         } else {
-                            JOptionPane.showMessageDialog(null,
-                                    "El arbol esta vacio");
+                            JOptionPane.showMessageDialog(null, "El arbol esta vacio");
                         }
                         break;
                     case 3:
                         if (!tree.vacio()) {
+                            System.out.print("\nSubArbol Derecho: \n");
                             tree.subTreeRight(tree.raiz.childDerech);
                         } else {
                             JOptionPane.showMessageDialog(null,"El arbol esta vacio");
@@ -51,6 +53,7 @@ public class Main {
                         break; //8 3 10 14 13 1 6 4 7
                     case 4:
                         if (!tree.vacio()) {
+                            System.out.print("\nSubArbol Izquierdo: \n");
                             tree.subTreeLeft(tree.raiz.childIzq);
                         } else {
                             JOptionPane.showMessageDialog(null,"El arbol esta vacio");
@@ -58,6 +61,7 @@ public class Main {
                         break;
                     case 5:
                            if (!tree.vacio()) {
+                               System.out.print("\nRecorrido InOrden: \n");
                                tree.inOrden(tree.raiz);
                            } else {
                                JOptionPane.showMessageDialog(null, "El arbol esta vacio");
@@ -68,10 +72,17 @@ public class Main {
                                 tree.preOrden(tree.raiz);
                             } else {
                                 JOptionPane.showMessageDialog(null,"El arbol esta vacio");
+                            if (!tree.vacio()) {
+                                System.out.print("\nRecorrido PreOrden: \n");
+                                tree.preOrden(tree.raiz);
+                            } else {
+                                JOptionPane.showMessageDialog(null,
+                                        "El arbol esta vacio");
                             }
                         break;
                     case 7:
                           if (!tree.vacio()) {
+                              System.out.print("\nRecorrido PostOrden: \n");
                               tree.postOrden(tree.raiz);
                           } else {
                               JOptionPane.showMessageDialog(null, "El arbol esta vacio");

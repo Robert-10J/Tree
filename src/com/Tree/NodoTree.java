@@ -12,5 +12,7 @@ public class NodoTree {
         this.childIzq = null;
     }
 
-    public String toString() { return nombre + " El dato es " + dato; }
+    public String toString() {
+        return "Nombre del nodo " + nombre + " El dato es " + dato;
+    }
 }

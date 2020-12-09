@@ -1,7 +1,6 @@
 package com.Tree;
 import javax.swing.*;
 public class TreeBinary {
-
     NodoTree raiz;
 
     public TreeBinary() { raiz = null; }
@@ -41,8 +40,7 @@ public class TreeBinary {
     public void inOrden(NodoTree ra) {
         if (ra != null) {
             inOrden(ra.childIzq);
-            //System.out.print(ra.dato);
-            JOptionPane.showMessageDialog(null, " " + ra.dato);
+            System.out.print(ra.dato + " ");
             inOrden(ra.childDerech);
         }
     }
@@ -52,14 +50,14 @@ public class TreeBinary {
         if (ra != null) {
             postOrden(ra.childIzq);
             postOrden(ra.childDerech);
-            System.out.println(ra.dato);
+            System.out.print(ra.dato + " ");
         }
     }
 
     //Recorrer en PreOrden
     public void preOrden(NodoTree ra) {
         if (ra != null) {
-            JOptionPane.showMessageDialog(null, ra.dato);
+            System.out.print(ra.dato + " ");
             preOrden(ra.childIzq);
             preOrden(ra.childDerech);
         }
@@ -70,8 +68,7 @@ public class TreeBinary {
         if (childLeft != null) {
             subTreeLeft(childLeft.childIzq);
             subTreeLeft(childLeft.childDerech);
-            //System.out.println(childLeft);
-            JOptionPane.showMessageDialog(null, childLeft);
+            System.out.println(childLeft + " ");
         }
     }
 
@@ -80,24 +77,22 @@ public class TreeBinary {
         if (childRight != null) {
             subTreeRight(childRight.childDerech);
             subTreeRight(childRight.childIzq);
-            //JOptionPane.showMessageDialog(null, childRight);
-            System.out.println(childRight);
+            System.out.println(childRight + " ");
         }
     }
 
-    //Elimiar nodo
-    public boolean elimminar(int da) {
+    public boolean eliminar(int da) {
         NodoTree aux = raiz;
         NodoTree padre = raiz;
-        boolean esChildIzq = true;
+        boolean esHijoIzq = true;
 
+        //Ayuda a saber si el nodo se encuentra o no dentro del arbol
         while (aux.dato != da) {
-            padre = aux;
             if (da < aux.dato) {
-                esChildIzq = true;
+                esHijoIzq = true;
                 aux = aux.childIzq;
             } else {
-                esChildIzq = false;
+                esHijoIzq = false;
                 aux = aux.childDerech;
             }
 
@@ -106,63 +101,36 @@ public class TreeBinary {
             }
         }
 
-        if ( aux.childIzq == null && aux.childDerech == null) {
+        if (aux.childIzq == null && aux.childDerech == null) {
             if (aux == raiz) {
-                raiz = null;
-            } else if(esChildIzq) {
+                System.out.println("No es posible eliminar el nodo de la raiz " + raiz);
+            } else if (esHijoIzq) {
+                System.out.print("El nodo " + padre.childIzq + " se elimino");
                 padre.childIzq = null;
             } else {
+                System.out.println("El nodo " + padre.childDerech + " se elimino");
                 padre.childDerech = null;
             }
-        } else if(aux.childDerech == null) {
+        } else if (aux.childDerech == null) {
             if (aux == raiz) {
-                    raiz = aux.childIzq;
-                } else if(esChildIzq) {
-                    padre.childIzq = aux.childIzq;
-                } else {
-                    padre.childDerech = aux.childIzq;
-                }
-            } else if(aux.childIzq == null) {
-                if (aux == raiz) {
-                    raiz = aux.childDerech;
-                } else if(esChildIzq) {
-                    padre.childIzq = aux.childDerech;
-                } else {
-                    padre.childDerech = aux.childIzq;
-                }
+                System.out.print("No es posible eliminar la nodo (raiz) " + aux);
+            } else if(esHijoIzq) {
+                System.out.print("No es posible eliminar el nodo padre " + aux);
             } else {
-                NodoTree reemplazo = obtenerNodoReemplazo(aux);
-                if(aux == raiz) {
-                    raiz = reemplazo;
-                } else if (esChildIzq) {
-                    padre.childIzq = reemplazo;
-                } else {
-                    padre.childDerech = reemplazo;
-                }
-                reemplazo.childIzq = aux.childIzq;
+                System.out.print("No es posible eliminar el nodo raiz padre " + aux);
             }
-            return true;
+        } else if (aux.childIzq == null) {
+            if (aux == raiz) {
+                System.out.print("No es posible eliminar la raiz " + aux);
+            } else if (esHijoIzq) {
+                System.out.print("No es posible eliminar el nodo padre " + aux);
+            } else {
+                System.out.print("No es posible eliminar el nodo padre " + aux);
+            }
+        } else {
+            System.out.print("No es posible eliminar el nodo raiz/padre " + aux + "\n");
         }
 
-    //Devolver el nodoReemplazo
-    public NodoTree obtenerNodoReemplazo(NodoTree nodoReem) {
-        NodoTree reemplazarPadre = nodoReem;
-        NodoTree reemplazo = nodoReem;
-        NodoTree aux = nodoReem.childDerech;
-
-        while (aux != null) {
-            reemplazarPadre = reemplazo;
-            reemplazo = aux;
-            aux = aux.childIzq;
-        }
-
-        if(reemplazo != nodoReem.childDerech) {
-            reemplazarPadre.childIzq = reemplazo.childDerech;
-            reemplazo.childDerech = nodoReem.childDerech;
-        }
-
-        System.out.println("El nodo reemplazo es: " + reemplazo);
-        JOptionPane.showMessageDialog(null, "El nodo reemplazo es: " + reemplazo);
-        return reemplazo;
+        return true;
     }
 }
