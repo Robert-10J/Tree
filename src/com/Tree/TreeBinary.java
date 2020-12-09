@@ -1,29 +1,33 @@
 package com.Tree;
-import javax.swing.*;
 public class TreeBinary {
     NodoTree raiz;
 
     public TreeBinary() { raiz = null; }
 
-    public void agregarNodo(int da, String nomb) {
-        NodoTree nuev = new NodoTree(da, nomb);
+    public void AgregarNodo(int d, String nomb) {
+        NodoTree nuevo = new NodoTree(d, nomb);
         if (raiz == null) {
-            raiz = nuev;
+            raiz = nuevo;
+            System.out.println("La raiz ha sido creada");
         } else {
-            NodoTree aux = raiz;
-            NodoTree padre;
+            NodoTree auxiliar = raiz;//nodo auxiliar de tipo nodoarbol, se apunta a la raiz
+            NodoTree padre;//nodo padre de tipo nodoarbol, no apunta a nada
+
             while (true) {
-                padre = aux;
-                if (da < aux.dato) {
-                    aux = aux.childIzq;
-                    if (aux == null) {
-                        padre.childIzq = nuev;
-                        return;
+                padre = auxiliar;//padre se apunta a auxiliar, o sease que padre apunta tambien raiz
+                if (d < auxiliar.dato) {//si el dato ingresado es < que auxiliar de dato
+                    auxiliar = auxiliar.childIzq;
+
+                    if (auxiliar == null) {//si aux==null, ya llego al final
+                        padre.childIzq = nuevo;
+                        System.out.println("Nodo agregado");
+                        return;//finaliza la ejecucion del metodo
                     }
-                } else {
-                    aux = aux.childDerech;
-                    if (aux == null) {
-                        padre.childDerech = nuev;
+                }else {
+                    auxiliar = auxiliar.childDerech;
+                    if (auxiliar == null) {
+                        padre.childDerech = nuevo;
+                        System.out.println("Nodo agregado");
                         return;
                     }
                 }
@@ -66,71 +70,68 @@ public class TreeBinary {
     //Imprimir subTree left
     public void subTreeLeft(NodoTree childLeft){
         if (childLeft != null) {
-            subTreeLeft(childLeft.childIzq);
-            subTreeLeft(childLeft.childDerech);
-            System.out.println(childLeft + " ");
+            System.out.print(childLeft.dato + " ");
+            preOrden(childLeft.childIzq);
         }
     }
 
     //Print subTree right
     public void subTreeRight(NodoTree childRight) {
         if (childRight != null) {
-            subTreeRight(childRight.childDerech);
-            subTreeRight(childRight.childIzq);
-            System.out.println(childRight + " ");
+            System.out.print(childRight.dato + " ");
+            preOrden(childRight.childDerech);
         }
     }
 
-    public boolean eliminar(int da) {
+    public boolean Eliminar(int d) {
         NodoTree aux = raiz;
         NodoTree padre = raiz;
-        boolean esHijoIzq = true;
+        boolean eshijoizq = true;
 
-        //Ayuda a saber si el nodo se encuentra o no dentro del arbol
-        while (aux.dato != da) {
-            if (da < aux.dato) {
-                esHijoIzq = true;
+        //para ver si existe el dato
+        while (aux.dato != d) {
+            padre = aux;
+            if (d < aux.dato) {//si es menor
+                eshijoizq = true;//hara recorrido hacia la izquierda
                 aux = aux.childIzq;
-            } else {
-                esHijoIzq = false;
+            } else {//si no(es xke es >o= y hara el recorrido por la derecha
+                eshijoizq = false;
                 aux = aux.childDerech;
             }
-
-            if (aux == null) {
-                return false;
+            if (aux == null) {//llego hasta el final y no encontro el dato
+                return false;//termina, no existe el dato
             }
         }
 
         if (aux.childIzq == null && aux.childDerech == null) {
             if (aux == raiz) {
-                System.out.println("No es posible eliminar el nodo de la raiz " + raiz);
-            } else if (esHijoIzq) {
-                System.out.print("El nodo " + padre.childIzq + " se elimino");
+                System.out.print("\nNo se puede eliminar el nodo (raiz)" + raiz + "\n");
+            }else if (eshijoizq) {
+                System.out.print("\nEl nodo " + padre.childIzq + " ha sido eliminado" + "\n");
                 padre.childIzq = null;
             } else {
-                System.out.println("El nodo " + padre.childDerech + " se elimino");
+                System.out.print("\nEl nodo " + padre.childDerech + " ha sido eliminado" + "\n");
                 padre.childDerech = null;
             }
-        } else if (aux.childDerech == null) {
+        }else if (aux.childDerech == null) {
             if (aux == raiz) {
-                System.out.print("No es posible eliminar la nodo (raiz) " + aux);
-            } else if(esHijoIzq) {
-                System.out.print("No es posible eliminar el nodo padre " + aux);
-            } else {
-                System.out.print("No es posible eliminar el nodo raiz padre " + aux);
+                System.out.print("\nNo es posible eliminar el nodo (raiz) " + aux + "\n");
+            }else if (eshijoizq) {//si es hijoizq (padreizq)
+                System.out.print("\nNo es posible eliminar el nodo padre " + aux + "\n");
+            } else {//si no (va ser padre derecho)
+                System.out.print("\nNo es posible eliminar el nodo raiz padre " + aux + "\n");
             }
-        } else if (aux.childIzq == null) {
+        }else if (aux.childIzq == null) {//sub-arbol derecho
             if (aux == raiz) {
-                System.out.print("No es posible eliminar la raiz " + aux);
-            } else if (esHijoIzq) {
-                System.out.print("No es posible eliminar el nodo padre " + aux);
-            } else {
-                System.out.print("No es posible eliminar el nodo padre " + aux);
+                System.out.print("\nNo es posible eliminar el nodo (raiz) " + aux + "\n");
+            } else if (eshijoizq) {
+                System.out.print("\nNo es posible eliminar el nodo padre " + aux + "\n");
+            }else {
+                System.out.print("\nNo es posible eliminar el nodo padre " + aux + "\n");
             }
         } else {
-            System.out.print("No es posible eliminar el nodo raiz/padre " + aux + "\n");
+            System.out.print("\nNo es posible eliminar el nodo (raiz/padre) " + aux + "\n");
         }
-
         return true;
     }
 }

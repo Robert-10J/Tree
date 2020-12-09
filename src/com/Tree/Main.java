@@ -8,8 +8,8 @@ public class Main {
         String nombre;
         TreeBinary tree = new TreeBinary();
 
-        while(opcion != 8) {
-            try{
+        while (opcion != 8) {
+            try {
                 opcion = Integer.parseInt(JOptionPane.showInputDialog(null,
                         "Opciones: \n\n" +
                                 "1.- Insertar raíz/nodo \n" +
@@ -20,20 +20,20 @@ public class Main {
                                 "6.- Recorrido PreOrden \n" +
                                 "7.- Recorrido PostOrden \n" +
                                 "8.- Salir" + "\n\n"));
-                switch (opcion){
+                switch (opcion) {
                     case 1:
-                           elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
-                                   "Ingrese dato al nodo: "));
-                           nombre = JOptionPane.showInputDialog(null,
-                                   "Ingresa nombre al nodo: ");
-                           tree.agregarNodo(elemento, nombre);
+                        elemento=Integer.parseInt(JOptionPane.showInputDialog(null,
+                                "Ingresa un elemento: "));
+                        nombre=JOptionPane.showInputDialog(null,
+                                "Ingresa el nombre del nodo: ");
+                        tree.AgregarNodo(elemento, nombre);
                         break;
                     case 2:
                         if (!tree.vacio()) {
-                            int eleDele = Integer.parseInt(JOptionPane.showInputDialog(null,
+                            elemento = Integer.parseInt(JOptionPane.showInputDialog(null,
                                     "Ingrese elemento a eliminar"));
-                            if (tree.eliminar(eleDele) == false) {
-                                /*JOptionPane.showMessageDialog(null,
+                            if (tree.Eliminar(elemento) == false) {
+                               /* JOptionPane.showMessageDialog(null,
                                         "El elemento no se encuentra en el arbol");*/
                             } else {
                                 /*JOptionPane.showMessageDialog(null,
@@ -46,32 +46,28 @@ public class Main {
                     case 3:
                         if (!tree.vacio()) {
                             System.out.print("\nSubArbol Derecho: \n");
-                            tree.subTreeRight(tree.raiz.childDerech);
+                            tree.subTreeRight(tree.raiz);
                         } else {
-                            JOptionPane.showMessageDialog(null,"El arbol esta vacio");
+                            JOptionPane.showMessageDialog(null, "El arbol esta vacio");
                         }
-                        break; //8 3 10 14 13 1 6 4 7
+                        break;
                     case 4:
                         if (!tree.vacio()) {
                             System.out.print("\nSubArbol Izquierdo: \n");
-                            tree.subTreeLeft(tree.raiz.childIzq);
+                            tree.subTreeLeft(tree.raiz);
                         } else {
-                            JOptionPane.showMessageDialog(null,"El arbol esta vacio");
+                            JOptionPane.showMessageDialog(null, "El arbol esta vacio");
                         }
                         break;
                     case 5:
-                           if (!tree.vacio()) {
-                               System.out.print("\nRecorrido InOrden: \n");
-                               tree.inOrden(tree.raiz);
-                           } else {
-                               JOptionPane.showMessageDialog(null, "El arbol esta vacio");
-                           }
+                        if (!tree.vacio()) {
+                            System.out.print("\nRecorrido InOrden: \n");
+                            tree.inOrden(tree.raiz);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El arbol esta vacio");
+                        }
                         break;
                     case 6:
-                            if (!tree.vacio()){
-                                tree.preOrden(tree.raiz);
-                            } else {
-                                JOptionPane.showMessageDialog(null,"El arbol esta vacio");
                             if (!tree.vacio()) {
                                 System.out.print("\nRecorrido PreOrden: \n");
                                 tree.preOrden(tree.raiz);
@@ -79,19 +75,20 @@ public class Main {
                                 JOptionPane.showMessageDialog(null,
                                         "El arbol esta vacio");
                             }
-                        break;
+                            break;
                     case 7:
-                          if (!tree.vacio()) {
-                              System.out.print("\nRecorrido PostOrden: \n");
-                              tree.postOrden(tree.raiz);
-                          } else {
-                              JOptionPane.showMessageDialog(null, "El arbol esta vacio");
-                          }
+                        if (!tree.vacio()) {
+                            System.out.print("\nRecorrido PostOrden: \n");
+                            tree.postOrden(tree.raiz);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "El arbol esta vacio");
+                        }
                         break;
                     case 8: opcion = 8; break;
-                }
-            }catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(null, "Error " + e.getMessage(),
+                        }
+
+                } catch (NumberFormatException e) {
+                         JOptionPane.showMessageDialog(null, "Error " + e.getMessage(),
                         "Opcion no valida", JOptionPane.WARNING_MESSAGE);
             }
         }
